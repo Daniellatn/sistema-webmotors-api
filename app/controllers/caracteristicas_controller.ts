@@ -10,7 +10,10 @@ export default class CaracteristicasController {
   }
 
   async show({params}: HttpContext){
-    return await Caracteristica.findOrFail(params.id)
+    return await Caracteristica.query()
+    .where('id', params.id)
+    .preload('tipo')
+    .firstOrFail()
   }
 
   async store({request}: HttpContext){

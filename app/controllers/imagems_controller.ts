@@ -10,7 +10,9 @@ export default class ImagemsController {
   }
 
   async show({params}: HttpContext){
-    return await Imagem.findOrFail(params.id)
+    return await Imagem.query().where('id', params.id)
+    .preload('veiculo')
+    .firstOrFail()
   }
 
   async store({request}: HttpContext){

@@ -12,8 +12,8 @@ export default class PessoasController {
   async show({ params }: HttpContext) {
     return await Pessoa.query()
       .where('id', params.id)
-     // .preload('tipo_pessoa')
-      .first()
+      .preload('tipo_pessoa')
+      .firstOrFail()
   }
 
   async store({ request }: HttpContext) {

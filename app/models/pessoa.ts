@@ -28,6 +28,8 @@ export default class Pessoa extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
-  //@belongsTo(()=>TipoPessoa)
- // declare tipo_pessoa: BelongsTo<typeof TipoPessoa>
+  @belongsTo(()=>TipoPessoa,{
+    foreignKey:'tipoId'
+  })
+  declare tipo_pessoa: BelongsTo<typeof TipoPessoa>
 }

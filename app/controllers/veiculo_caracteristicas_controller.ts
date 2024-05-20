@@ -10,7 +10,10 @@ export default class VeiculoCaracteristicasController {
   }
 
   async show({params}: HttpContext){
-    return await VeiculoCaracteristica.findOrFail(params.id)
+    return await VeiculoCaracteristica.query(params.id).where('id', params.id)
+    .preload('veiculo')
+    .preload('caracteristica')
+    .firstOrFail()
   }
 
   async store({request}: HttpContext){
